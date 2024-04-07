@@ -25,7 +25,7 @@ impl App for TextPaster {
         ctx.set_visuals(dark_visuals);
         
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("Text Paster");
+            ui.heading("TextPaster");
             ui.separator();
 
             egui::ScrollArea::vertical().show(ui, |ui| {
