@@ -7,6 +7,7 @@ use std::{thread, time};
 struct TextPaster {
     text: String,
     enigo: Enigo,
+    dark_mode: bool,
 }
 
 impl TextPaster {
@@ -14,6 +15,7 @@ impl TextPaster {
         Self {
             text: String::new(),
             enigo: Enigo::new(),
+            dark_mode: true,
         }
     }
 }
@@ -21,13 +23,33 @@ impl TextPaster {
 impl App for TextPaster {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut Frame) {
         ctx.set_pixels_per_point(1.2);
-        let dark_visuals = egui::Visuals::dark();
-        ctx.set_visuals(dark_visuals);
-        
-        egui::CentralPanel::default().show(ctx, |ui| {
-            ui.heading("TextPaster");
-            ui.separator();
 
+        if self.dark_mode {
+            ctx.set_visuals(egui::Visuals::dark());
+        } else {
+            ctx.set_visuals(egui::Visuals::light());
+        }
+
+        egui::TopBottomPanel::top("top_panel").show(ctx, |ui| {
+            ui.horizontal(|ui| {
+                ui.heading("TextPaster");
+
+                ui.with_layout(
+                    egui::Layout::from_main_dir_and_cross_align(
+                        egui::Direction::RightToLeft,
+                        egui::Align::RIGHT,
+                    ),
+                    |ui| {
+                        let button_text = if self.dark_mode { "🌙" } else { "🌞" };
+                        if ui.button(button_text).clicked() {
+                            self.dark_mode = !self.dark_mode;
+                        }
+                    },
+                );
+            });
+        });
+
+        egui::CentralPanel::default().show(ctx, |ui| {
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.vertical_centered(|ui| {
                     ui.add(egui::TextEdit::multiline(&mut self.text).desired_width(350.0));
@@ -66,7 +88,7 @@ fn main() {
         ..Default::default()
     };
     let result = eframe::run_native(
-        "Text Paster",
+        "TextPaster",
         native_options,
         Box::new(move |_ctx: &CreationContext<'_>| Box::new(app)),
     );
