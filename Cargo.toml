@@ -11,3 +11,6 @@ eframe = "0.22.0"
 egui = "0.22.0"
 enigo = "0.1.0"
 winapi = { version = "0.3", features = ["winuser"] }
+
+[package.metadata.windows]
+icon = "resources/icon.ico"

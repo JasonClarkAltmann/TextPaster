@@ -21,7 +21,9 @@ impl TextPaster {
 impl App for TextPaster {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut Frame) {
         ctx.set_pixels_per_point(1.2);
-
+        let dark_visuals = egui::Visuals::dark();
+        ctx.set_visuals(dark_visuals);
+        
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Text Paster");
             ui.separator();
@@ -42,6 +44,8 @@ impl App for TextPaster {
             egui::TopBottomPanel::bottom("footer").show(ctx, |ui| {
                 ui.horizontal(|ui| {
                     ui.label("Jason Clark Altmann");
+                    ui.add_space(5.0);
+                    ui.label("-");
                     ui.add_space(5.0);
 
                     use egui::special_emojis::GITHUB;
