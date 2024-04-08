@@ -73,7 +73,7 @@ impl App for TextPaster {
                     use egui::special_emojis::GITHUB;
                     ui.hyperlink_to(
                         format!("{GITHUB} GitHub"),
-                        "https://github.com/JasonClarkAltmann/text-paster",
+                        "https://github.com/JasonClarkAltmann/TextPaster",
                     );
                 });
             });
