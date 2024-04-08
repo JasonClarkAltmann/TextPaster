@@ -4,6 +4,8 @@ use eframe::{egui, App, CreationContext, Frame};
 use enigo::{Enigo, KeyboardControllable};
 use std::{thread, time};
 
+use egui::special_emojis::GITHUB;
+
 struct TextPaster {
     text: String,
     enigo: Enigo,
@@ -65,15 +67,19 @@ impl App for TextPaster {
 
             egui::TopBottomPanel::bottom("footer").show(ctx, |ui| {
                 ui.horizontal(|ui| {
-                    ui.label("Jason Clark Altmann");
-                    ui.add_space(5.0);
-                    ui.label("-");
-                    ui.add_space(5.0);
-
-                    use egui::special_emojis::GITHUB;
-                    ui.hyperlink_to(
-                        format!("{GITHUB} GitHub"),
-                        "https://github.com/JasonClarkAltmann/TextPaster",
+                    ui.label("@JasonClarkAltmann");
+                    
+                    ui.with_layout(
+                        egui::Layout::from_main_dir_and_cross_align(
+                            egui::Direction::RightToLeft,
+                            egui::Align::RIGHT,
+                        ),
+                        |ui| {
+                            ui.hyperlink_to(
+                                format!("{GITHUB} GitHub"),
+                                "https://github.com/JasonClarkAltmann/TextPaster",
+                            );
+                        },
                     );
                 });
             });
