@@ -8,8 +8,6 @@ The application provides a text field for users to enter text. After entering th
 
 The application waits three seconds before it "pastes" the text after the user clicks the "Paste" button. This gives the user time to set the focus to the window or field where the text should be pasted.
 
-The application also has a footer with the author's name and a link to the application's GitHub repo.
-
 ## Usage
 
 To use the application, simply run the program and enter the text you want to "paste". Then click the "Paste" button and set the focus to the window or field where the text should be pasted within three seconds.
